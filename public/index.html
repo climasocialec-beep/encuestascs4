@@ -523,13 +523,13 @@
         if ('caches' in window) {
           caches.keys().then(names => {
             names.forEach(name => {
-              if (name !== 'clima-social-v101-pichincha') {
+              if (name !== 'clima-social-v102-pichincha') {
                 caches.delete(name);
               }
             });
           });
         }
-        navigator.serviceWorker.register('/service-worker.js?v=101.0.0').then(reg => {
+        navigator.serviceWorker.register('/service-worker.js?v=102.0.0').then(reg => {
           if (!reg) return;
           if (reg.waiting) {
             reg.waiting.postMessage({ type: 'SKIP_WAITING' });
