@@ -1,0 +1,16 @@
+{
+  "name": "Clima Social · Supervisión Ibarra 2026",
+  "short_name": "CS Ibarra",
+  "description": "Supervisión de campo para Encuesta Cantonal Ibarra 2026.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2c0b36",
+  "icons": [
+    {
+      "src": "assets/icono.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    }
+  ]
+}

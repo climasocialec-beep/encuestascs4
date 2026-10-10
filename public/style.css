@@ -1,0 +1,3783 @@
+/* ==========================================================================
+   DASHBOARD DE SUPERVISIÓN DE CAMPO · CLIMA SOCIAL
+   Sistema de Diseño Profesional, Moderno y Premium (UI/UX Refinado)
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. IDENTIDAD VISUAL: SLATE MODERNO & ACENTOS CLIMA SOCIAL (SIN MORADOS PESADOS)
+     ------------------------------------------------------------------------ */
+  --cs-slate-dark: #0f172a;       /* Slate 900 (Cabeceras de Panel y Contraste Alto) */
+  --cs-slate-surface: #1e293b;    /* Slate 800 */
+  --cs-slate-medium: #334155;     /* Slate 700 */
+  --cs-slate-light: #f1f5f9;      /* Slate 100 Pastel */
+  --cs-slate-border: #e2e8f0;     /* Slate 200 Borde Suave */
+
+  --cs-purple-dark: var(--cs-slate-dark);
+  --cs-purple-primary: var(--cs-slate-dark);
+  --cs-purple-medium: var(--cs-slate-medium);
+  --cs-purple-light: var(--cs-indigo-light);
+  --cs-purple-border: var(--cs-indigo-border);
+
+  /* ------------------------------------------------------------------------
+     2. PALETA DE ESTADOS SEMÁNTICOS (SUTILES, NO SATURADOS)
+     ------------------------------------------------------------------------ */
+  --cs-green: #059669;            /* Verde Esmeralda / Positivo / Completado */
+  --cs-green-light: #ecfdf5;      /* Fondo Verde Suave */
+  --cs-green-border: #a7f3d0;
+
+  --cs-amber: #d97706;            /* Ámbar / Pendientes / En Proceso */
+  --cs-amber-light: #fffbeb;      /* Fondo Ámbar Suave */
+  --cs-amber-border: #fde68a;
+
+  --cs-coral: #dc2626;            /* Rojo Coral Sutil para Alertas */
+  --cs-coral-light: #fef2f2;
+  --cs-coral-border: #fecaca;
+
+  --cs-teal: #028090;             /* Azul Petróleo / Cartografía */
+  --cs-teal-light: #f0fdfa;
+  --cs-teal-border: #99f6e4;
+
+  --cs-indigo: #4f46e5;           /* Indigo / Acento Secundario */
+  --cs-indigo-light: #eef2ff;
+  --cs-indigo-border: #c7d2fe;
+
+  --cs-gold: #f59e0b;             /* Ocre Dorado Vivo */
+
+  /* ------------------------------------------------------------------------
+     3. SUPERFICIES Y FONDOS (MODERNO, LIMPIO, PROFESIONAL)
+     ------------------------------------------------------------------------ */
+  --bg-canvas: #f8fafc;           /* Slate 50 Fondo Limpio Ejecutivo */
+  --bg-surface: #ffffff;          /* Blanco Puro para Módulos y Tarjetas */
+  --bg-subtle: #f1f5f9;           /* Gris Suave para Inputs, Cabeceras de Tabla */
+  --bg-card-hover: #f8fafc;
+
+  /* ------------------------------------------------------------------------
+     4. TIPOGRAFÍA Y CONTRASTES
+     ------------------------------------------------------------------------ */
+  --text-main: #0f172a;           /* Texto Principal de Alto Contraste */
+  --text-soft: #334155;           /* Texto Secundario y Etiquetas */
+  --text-muted: #64748b;          /* Subtítulos, Metadatos y Placeholders */
+  --text-inverse: #ffffff;        /* Blanco sobre Fondos Oscuros */
+
+  /* ------------------------------------------------------------------------
+     5. BORDES MUY SUTILES
+     ------------------------------------------------------------------------ */
+  --border-subtle: #e2e8f0;       /* Borde 1px muy sutil */
+  --border-medium: #cbd5e1;       /* Borde para inputs y controles */
+  --border-focus: var(--cs-teal);
+
+  /* ------------------------------------------------------------------------
+     6. SOMBRAS SUAVES Y DIFUSAS
+     ------------------------------------------------------------------------ */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.10), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+
+  /* ------------------------------------------------------------------------
+     7. RADIOS DE CURVATURA CONSISTENTES (10px - 12px)
+     ------------------------------------------------------------------------ */
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 14px;
+  --cs-transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Safe-Area Insets para iPhone Notch / Dynamic Island / Barra inferior */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+
+  --cs-header-content-h: 50px;
+  --cs-header-height: calc(var(--cs-header-content-h) + var(--sat));
+}
+
+/* Modo Oscuro Elegante (Alto Contraste y Cero Texto Blanco sobre Blanco) */
+body.modo-oscuro {
+  --bg-canvas: #0e0513;
+  --bg-surface: #1a0c20;
+  --bg-subtle: #24122d;
+  --bg-card-hover: #2d1837;
+
+  --text-main: #f8fafc;
+  --text-soft: #e2e8f0;
+  --text-muted: #94a3b8;
+
+  --border-subtle: #381e44;
+  --border-medium: #4c285c;
+  --border-focus: #c084fc;
+
+  --cs-teal-light: rgba(2, 128, 144, 0.25);
+  --cs-green-light: rgba(5, 150, 105, 0.25);
+  --cs-amber-light: rgba(217, 119, 6, 0.25);
+  --cs-purple-light: rgba(168, 85, 247, 0.25);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.65);
+}
+
+body.modo-oscuro .cs-select {
+  background-color: #24122d;
+  color: #f8fafc;
+  border-color: #4c285c;
+}
+
+body.modo-oscuro .cs-select:focus {
+  background-color: #2d1837 !important;
+  color: #ffffff !important;
+  border-color: #c084fc !important;
+}
+
+body.modo-oscuro .cs-select option {
+  background-color: #1a0c20 !important;
+  color: #f8fafc !important;
+}
+
+body.modo-oscuro .cs-locate-btn {
+  background-color: #1a0c20;
+  border-color: #381e44;
+}
+
+body.modo-oscuro .cs-locate-btn:hover {
+  background-color: #24122d;
+  border-color: #f26419;
+  box-shadow: 0 4px 14px rgba(242, 100, 25, 0.4);
+}
+
+body.modo-oscuro .cs-mini-card textarea {
+  background-color: #24122d;
+  color: #f8fafc;
+  border-color: #4c285c;
+}
+
+body.modo-oscuro .cs-mini-card textarea:focus {
+  background-color: #2d1837 !important;
+  color: #ffffff !important;
+  border-color: #c084fc !important;
+}
+
+body.modo-oscuro .cs-data-table tbody tr:hover {
+  background-color: #261630;
+}
+
+/* Invertir sutilmente los tiles de OpenStreetMap en modo oscuro para comodidad visual */
+body.modo-oscuro .leaflet-tile-pane {
+  filter: brightness(0.75) invert(1) contrast(1.6) hue-rotate(200deg) saturate(0.4);
+}
+
+/* ==========================================================================
+   Reset & Estructura Base (Fit Viewport)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-main);
+  transition: background-color var(--cs-transition), color var(--cs-transition);
+  font-size: 13px;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.015em;
+}
+
+/* ==========================================================================
+   Franja Textil Andina Clima Social (Sutil & Elegante)
+   ========================================================================== */
+.franja-textil {
+  height: 3px;
+  width: 100%;
+  flex-shrink: 0;
+  background: repeating-linear-gradient(-45deg,
+      #0f172a 0 10px,
+      #e11d48 10px 20px,
+      #028090 20px 30px,
+      #f59e0b 30px 40px);
+}
+
+/* ==========================================================================
+   Sistema de Iconos SVG
+   ========================================================================== */
+svg.cs-icon, .cs-icon {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none !important;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+svg.cs-icon--sm, .cs-icon--sm {
+  width: 13px !important;
+  height: 13px !important;
+  min-width: 13px !important;
+  min-height: 13px !important;
+}
+
+svg.cs-icon--lg, .cs-icon--lg {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+}
+
+svg.cs-icon *, .cs-icon * {
+  fill: none !important;
+  stroke: inherit;
+  stroke-width: inherit;
+}
+
+/* ==========================================================================
+   Header Component (Elegante, Luminoso & Logo Prominente)
+   ========================================================================== */
+.cs-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  height: var(--cs-header-height);
+  min-height: var(--cs-header-height);
+  padding-top: var(--sat);
+  padding-left: var(--sal);
+  padding-right: var(--sar);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
+  color: var(--text-main);
+  flex-shrink: 0;
+  width: 100%;
+  transition: background-color var(--cs-transition), border-color var(--cs-transition);
+}
+
+body.modo-oscuro .cs-header {
+  background-color: #0f172a;
+  border-bottom-color: #1e293b;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  color: #f8fafc;
+}
+
+.cs-header__inner {
+  width: 100%;
+  height: var(--cs-header-content-h);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  box-sizing: border-box;
+}
+
+.cs-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.cs-brand__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.cs-brand__logo {
+  height: 34px;
+  max-height: 34px;
+  max-width: 160px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+body.modo-oscuro .cs-brand__logo {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.cs-header__divider {
+  width: 1px;
+  height: 22px;
+  background-color: var(--border-subtle);
+  margin: 0 0.15rem;
+  flex-shrink: 0;
+}
+
+body.modo-oscuro .cs-header__divider {
+  background-color: #334155;
+}
+
+.cs-header__title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.cs-header__title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  /* Permite 2 líneas — universal en cualquier ancho de pantalla */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+body.modo-oscuro .cs-header__title {
+  color: #f8fafc;
+}
+
+.cs-header__live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  padding: 0.12rem 0.5rem;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+body.modo-oscuro .cs-header__live-badge {
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.cs-header__live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10b981;
+  animation: cs-pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes cs-pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.cs-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.cs-header__clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border-subtle);
+  padding-left: 0.75rem;
+  margin-right: 0.2rem;
+  line-height: 1.25;
+}
+
+body.modo-oscuro .cs-header__clock {
+  border-left-color: #334155;
+  color: #94a3b8;
+}
+
+.cs-clock {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.78rem;
+}
+
+body.modo-oscuro .cs-clock {
+  color: #f1f5f9;
+}
+
+.cs-date {
+  font-size: 0.63rem;
+  color: var(--text-muted);
+}
+
+body.modo-oscuro .cs-date {
+  color: #94a3b8;
+}
+
+.cs-btn-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  transition: all var(--cs-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-btn-icon:hover {
+  background: var(--border-subtle);
+  color: var(--text-main);
+  border-color: var(--border-medium);
+  transform: translateY(-1px);
+}
+
+.cs-btn-icon:active {
+  transform: scale(0.94);
+}
+
+body.modo-oscuro .cs-btn-icon {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+body.modo-oscuro .cs-btn-icon:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Contenedor Principal
+   ========================================================================== */
+.cs-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem 0.85rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  overflow: visible;
+  height: auto;
+}
+
+/* ==========================================================================
+   Tarjetas de Indicadores (KPIs Modernos & Compactos)
+   ========================================================================== */
+.cs-kpi-grid {
+  display: grid;
+  /* auto-fit: se ajusta solo a CUALQUIER dispositivo (320px → 4K).
+     Por debajo de 4×130px disponibles, pasa automáticamente a 2 columnas. */
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.55rem;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.cs-kpi-card {
+  position: relative;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.85rem 0.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.35rem;
+  min-height: 68px;
+  overflow: hidden;
+  transition: transform var(--cs-transition), box-shadow var(--cs-transition), border-color var(--cs-transition);
+}
+
+.cs-kpi-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-medium);
+}
+
+.cs-kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Iconos Circulares Sutiles */
+.cs-kpi-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cs-kpi-figure {
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.cs-kpi-card__value {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
+  font-family: 'JetBrains Mono', 'Poppins', monospace;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.cs-kpi-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+  width: 100%;
+}
+
+.cs-kpi-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-soft);
+  line-height: 1.2;
+}
+
+.cs-kpi-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Variantes de Color para KPIs */
+.cs-kpi-card--teal .cs-kpi-icon-wrap { background-color: var(--cs-teal-light); color: var(--cs-teal); }
+.cs-kpi-card--teal .cs-kpi-card__value { color: var(--cs-teal); }
+
+.cs-kpi-card--green .cs-kpi-icon-wrap { background-color: var(--cs-green-light); color: var(--cs-green); }
+.cs-kpi-card--green .cs-kpi-card__value { color: var(--cs-green); }
+
+.cs-kpi-card--amber .cs-kpi-icon-wrap { background-color: var(--cs-amber-light); color: var(--cs-amber); }
+.cs-kpi-card--amber .cs-kpi-card__value { color: var(--cs-amber); }
+
+.cs-kpi-card--purple .cs-kpi-icon-wrap { background-color: var(--cs-indigo-light); color: var(--cs-indigo); }
+.cs-kpi-card--purple .cs-kpi-card__value { color: var(--cs-indigo); }
+
+.cs-kpi-card--rose .cs-kpi-icon-wrap { background-color: var(--cs-coral-light); color: var(--cs-coral); }
+.cs-kpi-card--rose .cs-kpi-card__value { color: var(--cs-coral); }
+.cs-kpi-card--clickable { cursor: pointer; user-select: none; }
+.cs-kpi-card--clickable:active { transform: scale(0.98); }
+
+/* Barra de Progreso Elegante */
+.cs-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--border-subtle);
+  overflow: hidden;
+}
+
+.cs-progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cs-teal), var(--cs-indigo));
+  transition: width 0.8s ease;
+}
+
+/* ==========================================================================
+   Grilla Principal 2 Columnas (Mapa Protagonista & Panel Derecho)
+   ========================================================================== */
+.cs-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 370px;
+  gap: 0.6rem;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Cabeceras de Panel (Slate Moderno & Limpio)
+   ========================================================================== */
+.cs-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.48rem 0.85rem;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  flex-shrink: 0;
+}
+
+.cs-panel-header--navy,
+.cs-panel-header--map {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.modo-oscuro .cs-panel-header--navy,
+body.modo-oscuro .cs-panel-header--map {
+  background-color: #1e293b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cs-panel-header--navy h3 {
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cs-panel-header__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.cs-table-group-switch {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.45);
+  padding: 2px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cs-group-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.67rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-group-tab-btn:hover {
+  color: #ffffff;
+}
+
+.cs-group-tab-btn.is-active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+body.modo-oscuro .cs-group-tab-btn.is-active {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.cs-panel-header--map h2 {
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+/* ==========================================================================
+   Sección del Mapa (Columna Izquierda Protagonista)
+   ========================================================================== */
+.cs-map-section {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Segmented Control & Grupo de Etiquetas */
+.cs-label-toggle-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 0.15rem 0.45rem 0.15rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.cs-label-toggle-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.cs-view-toggle {
+  display: flex;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.cs-toggle-btn {
+  padding: 0.22rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: all var(--cs-transition);
+}
+
+.cs-toggle-btn.active {
+  background: #ffffff;
+  color: var(--cs-purple-primary);
+  font-weight: 800;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cs-toggle-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Contenedor del Mapa */
+.cs-map-wrapper {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 480px;
+  overflow: hidden;
+  background-color: var(--bg-surface);
+  touch-action: none !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  touch-action: none !important;
+}
+
+.maplibregl-canvas-container,
+.maplibregl-canvas {
+  outline: none;
+  touch-action: none !important;
+}
+
+/* Modo Oscuro en MapLibre Tiles */
+body.modo-oscuro .maplibregl-map .maplibregl-canvas {
+  filter: brightness(0.78) invert(1) contrast(1.5) hue-rotate(200deg) saturate(0.35);
+}
+
+/* Popups personalizados de MapLibre */
+.maplibregl-popup {
+  z-index: 500;
+}
+
+.maplibregl-popup-content {
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid var(--border-color) !important;
+  padding: 12px 14px !important;
+}
+
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  border-top-color: var(--bg-surface) !important;
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+  border-bottom-color: var(--bg-surface) !important;
+}
+
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: var(--bg-surface) !important;
+}
+
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: var(--bg-surface) !important;
+}
+
+.maplibregl-popup-close-button {
+  font-size: 1.1rem !important;
+  color: var(--text-muted) !important;
+  padding: 4px 8px !important;
+  outline: none !important;
+}
+
+/* Barra Flotante Glassmorphism del Sector Censal Activo */
+/* Barra Flotante Glassmorphism del Sector Censal Activo */
+.cs-sector-active-bar {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 0.6rem 0.4rem 0.95rem;
+  background: rgba(30, 27, 75, 0.95);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1.5px solid #f59e0b;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.5), 0 0 20px rgba(245, 158, 11, 0.35);
+  animation: slideUpGlass 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-width: calc(100% - 24px);
+  pointer-events: auto;
+}
+
+@keyframes slideUpGlass {
+  0% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.cs-sector-active-info {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-sector-active-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.cs-sector-active-close:hover {
+  background: rgba(239, 68, 68, 0.8);
+  transform: scale(1.1);
+}
+
+.cs-btn-gmaps {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, #028090 0%, #00a896 100%);
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(2, 128, 144, 0.4);
+  transition: all var(--cs-transition);
+  white-space: nowrap;
+}
+
+.cs-btn-gmaps:hover {
+  background: linear-gradient(135deg, #00a896 0%, #028090 100%);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(2, 128, 144, 0.55);
+}
+
+.cs-btn-gmaps svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* Conteos por supervisor y encuestador en el mapa */
+.cs-map-legend {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 15;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+  max-width: 280px;
+  pointer-events: auto;
+  transition: all var(--cs-transition);
+}
+
+body.modo-oscuro .cs-map-legend {
+  background: rgba(15, 23, 42, 0.94);
+  border-color: #334155;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.cs-map-legend__header {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+body.modo-oscuro .cs-map-legend__header {
+  border-bottom-color: #334155;
+}
+
+.cs-legend-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.cs-map-legend__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  max-height: 230px;
+  overflow-y: auto;
+}
+
+.cs-map-legend__group-title {
+  color: var(--text-muted);
+  font-size: 0.62rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+}
+
+.cs-map-legend__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-map-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+body.modo-oscuro .cs-map-legend__item {
+  color: #f1f5f9;
+}
+
+.cs-legend-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.8);
+}
+
+.cs-legend-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  padding-left: 0.4rem;
+}
+
+/* Botón GPS Flotante */
+.cs-locate-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 400;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.15);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--cs-transition);
+}
+
+.cs-locate-btn:hover {
+  background-color: var(--bg-surface);
+  border-color: #f26419;
+  box-shadow: 0 4px 14px rgba(242, 100, 25, 0.25);
+  transform: scale(1.08);
+}
+
+.cs-locate-pegman-icon {
+  display: block;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cs-locate-btn:hover .cs-locate-pegman-icon {
+  transform: scale(1.15) translateY(-2px);
+}
+
+/* Pie del Mapa */
+.cs-map-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-subtle);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.cs-live-pulse-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cs-green);
+}
+
+.cs-live-mini-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--cs-green);
+  border-radius: 50%;
+  animation: cs-pulse 2s infinite;
+}
+
+/* ==========================================================================
+   Barra Panorámica de Control & Filtros (Horizontal Ribbon)
+   ========================================================================== */
+.cs-filter-ribbon-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+  flex-shrink: 0;
+  transition: all var(--cs-transition);
+}
+
+.cs-ribbon-main {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.cs-ribbon-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cs-ribbon-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.cs-ribbon-title svg {
+  color: var(--cs-teal);
+  width: 15px;
+  height: 15px;
+}
+
+body.modo-oscuro .cs-ribbon-title {
+  color: #f8fafc;
+}
+
+.cs-ribbon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(260px, 1.4fr);
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.cs-ribbon-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.cs-field-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-date-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.cs-date-pills {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+body.modo-oscuro .cs-date-pills {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+.cs-date-pill {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.67rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--cs-transition);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.cs-date-pill:hover {
+  color: var(--text-main);
+  background-color: var(--bg-surface);
+}
+
+.cs-date-pill.active {
+  background-color: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+body.modo-oscuro .cs-date-pill.active {
+  background-color: var(--cs-teal);
+  color: #ffffff;
+}
+
+.cs-select-wrap--date {
+  flex: 1;
+  min-width: 90px;
+}
+
+.cs-select--compact {
+  padding: 0.35rem 1.4rem 0.35rem 0.5rem;
+  font-size: 0.7rem;
+}
+
+.cs-select-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.cs-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 0.65rem;
+  width: 8px;
+  height: 5px;
+  background-color: var(--text-muted);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  pointer-events: none;
+  transition: transform var(--cs-transition);
+}
+
+.cs-select-wrap:focus-within::after {
+  transform: rotate(180deg);
+  background-color: var(--border-focus);
+}
+
+body.modo-oscuro .cs-select-wrap:focus-within::after {
+  background-color: #38bdf8;
+}
+
+/* Barra de Chips de Filtros Activos */
+.cs-active-chips-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--border-subtle);
+  animation: cs-fade-in 0.2s ease;
+}
+
+.cs-chips-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.cs-chips-container {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.cs-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.16rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background-color: var(--cs-purple-light);
+  color: var(--cs-purple-primary);
+  border: 1px solid var(--cs-purple-border);
+  cursor: pointer;
+  transition: all var(--cs-transition);
+  user-select: none;
+  font-family: inherit;
+}
+
+.cs-filter-chip:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-color: #fca5a5;
+  transform: translateY(-1px);
+}
+
+.cs-filter-chip .cs-chip-x {
+  width: 10px;
+  height: 10px;
+  opacity: 0.7;
+}
+
+.cs-filter-chip:hover .cs-chip-x {
+  opacity: 1;
+}
+
+body.modo-oscuro .cs-filter-chip {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #d8b4fe;
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+body.modo-oscuro .cs-filter-chip:hover {
+  background-color: rgba(225, 29, 72, 0.25);
+  color: #fda4af;
+  border-color: rgba(225, 29, 72, 0.45);
+}
+
+.cs-btn-reset {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-medium);
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  min-height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--cs-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-btn-reset .cs-icon { width: 14px; height: 14px; }
+
+.cs-btn-reset:hover {
+  background: var(--border-subtle);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.cs-btn-reset.has-active {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  border-color: #f43f5e;
+  color: #ffffff;
+  font-size: 0.82rem;
+  padding: 0.45rem 1rem;
+  min-height: 38px;
+  box-shadow: 0 2px 12px rgba(225, 29, 72, 0.5);
+  animation: cs-pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes cs-pulse-glow {
+  0%, 100% { box-shadow: 0 2px 12px rgba(225, 29, 72, 0.5); }
+  50% { box-shadow: 0 2px 20px rgba(225, 29, 72, 0.75); }
+}
+
+/* Botón "Limpiar todo" dentro de la barra de chips activos */
+.cs-chip-clear-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #e11d48;
+  color: #fff;
+  border: 1px solid #f43f5e;
+  cursor: pointer;
+  transition: all var(--cs-transition);
+  font-family: inherit;
+  white-space: nowrap;
+  min-height: 30px;
+  -webkit-tap-highlight-color: transparent;
+}
+.cs-chip-clear-all:hover {
+  background: #be123c;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Panel Derecho (Dedicado al Equipo de Encuestadores)
+   ========================================================================== */
+.cs-right-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.cs-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+  border: 1.5px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 0.42rem 1.6rem 0.42rem 0.65rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  cursor: pointer;
+  transition: all var(--cs-transition);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: var(--shadow-xs);
+}
+
+.cs-select:hover {
+  border-color: var(--cs-purple-medium);
+  background-color: var(--bg-surface);
+}
+
+.cs-select:focus {
+  border-color: var(--cs-purple-primary);
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 0 3px rgba(76, 24, 92, 0.18);
+}
+
+.cs-select.is-active {
+  border-color: var(--cs-amber);
+  background-color: #fffbeb;
+  color: #92400e;
+  font-weight: 700;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+}
+
+body.modo-oscuro .cs-select.is-active {
+  border-color: var(--cs-amber);
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fde68a;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+}
+
+/* Card de Tabla de Encuestadores */
+.cs-table-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cs-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  padding: 0.22rem 0.55rem;
+  width: 175px;
+  transition: all var(--cs-transition);
+}
+
+.cs-search-bar:focus-within {
+  background-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+  width: 190px;
+}
+
+.cs-search-bar input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.71rem;
+  color: #ffffff;
+  outline: none;
+  font-family: inherit;
+}
+
+.cs-search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Tabla Estilizada */
+.cs-table-responsive {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--bg-surface);
+  min-height: 0;
+}
+
+.cs-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.73rem;
+  table-layout: fixed;
+}
+
+.cs-data-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cs-data-table th:nth-child(1) { width: 72%; }
+.cs-data-table th:nth-child(2) { width: 28%; text-align: right; }
+
+.cs-data-table th {
+  padding: 0.5rem 0.45rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cs-data-table th:hover {
+  color: var(--cs-purple-primary);
+}
+
+.cs-sort-icon {
+  font-size: 0.65rem;
+  opacity: 0.4;
+  margin-left: 0.1rem;
+}
+
+.cs-data-table tbody tr {
+  content-visibility: auto;
+  contain-intrinsic-size: 42px;
+  transition: background-color var(--cs-transition);
+  cursor: pointer;
+}
+
+.cs-data-table tbody tr:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.cs-data-table tbody tr.selected {
+  background-color: var(--cs-purple-light) !important;
+  outline: 2px solid var(--cs-orange);
+  outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Encabezados de Grupo por Supervisor en Tabla
+   ========================================================================== */
+.cs-table-group-header {
+  background-color: var(--bg-subtle);
+  user-select: none;
+  cursor: pointer;
+  transition: background-color var(--cs-transition);
+}
+
+.cs-table-group-header:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.cs-table-group-header td {
+  padding: 0.45rem 0.55rem !important;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cs-table-group-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.cs-group-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.cs-group-chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cs-table-group-header.is-collapsed .cs-group-chevron {
+  transform: rotate(-90deg);
+}
+
+.cs-group-color-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--sup-dot-color, var(--cs-purple-primary));
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.cs-group-name {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.cs-group-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0.08rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+body.modo-oscuro .cs-group-pill {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+}
+
+.cs-table-group-header--errors {
+  background-color: rgba(239, 68, 68, 0.05);
+  border-top: 1px dashed rgba(239, 68, 68, 0.35);
+}
+
+.cs-table-group-header--errors:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.cs-group-pill--danger {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #b91c1c !important;
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+body.modo-oscuro .cs-group-pill--danger {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.cs-enc-total-pill--danger {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #fca5a5 !important;
+}
+
+.cs-enc-total-pill--warning {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  border: 1px solid #fde68a !important;
+}
+
+body.modo-oscuro .cs-enc-total-pill--danger {
+  background: rgba(239, 68, 68, 0.2) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+body.modo-oscuro .cs-enc-total-pill--warning {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #fcd34d !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+.cs-enc-row td {
+  padding-left: 0.85rem;
+}
+
+/* ==========================================================================
+   Fila de Encuestadores Compacta & Sin Redundancia
+   ========================================================================== */
+.cs-data-table td {
+  padding: 0.38rem 0.55rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+
+.cs-enc-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.cs-enc-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background-color: var(--enc-color, #0f172a);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.cs-enc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.cs-enc-name {
+  font-size: 0.77rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+}
+
+.cs-enc-sub {
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  line-height: 1.1;
+  margin-top: 0.1rem;
+}
+
+.cs-time-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--bg-subtle);
+  padding: 0.06rem 0.32rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+body.modo-oscuro .cs-time-tag {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+.cs-time-tag--avg {
+  color: var(--cs-purple-primary);
+  font-weight: 700;
+  border-color: var(--cs-purple-border);
+  background: var(--cs-purple-light);
+}
+
+body.modo-oscuro .cs-time-tag--avg {
+  color: #d8b4fe;
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+.cs-time-tag--min {
+  color: #059669;
+}
+
+body.modo-oscuro .cs-time-tag--min {
+  color: #34d399;
+}
+
+.cs-time-tag--max {
+  color: #d97706;
+}
+
+body.modo-oscuro .cs-time-tag--max {
+  color: #fbbf24;
+}
+
+.cs-enc-total-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--cs-purple-primary);
+  background-color: var(--cs-purple-light);
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  display: inline-block;
+  letter-spacing: -0.02em;
+}
+
+body.modo-oscuro .cs-enc-total-pill {
+  color: #c084fc;
+  background-color: rgba(168, 85, 247, 0.2);
+}
+
+/* Badges Cantonales de Encuestador */
+.cs-canton-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.1rem 0.42rem;
+  border-radius: 4px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  vertical-align: middle;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.cs-canton-badge-tag--Quito {
+  background: rgba(37, 99, 235, 0.12);
+  color: #1d4ed8;
+  border: 1px solid rgba(37, 99, 235, 0.28);
+}
+
+.cs-canton-badge-tag--Cayambe {
+  background: rgba(5, 150, 105, 0.12);
+  color: #047857;
+  border: 1px solid rgba(5, 150, 105, 0.28);
+}
+
+.cs-canton-badge-tag--Mejía,
+.cs-canton-badge-tag--Mejia {
+  background: rgba(234, 88, 12, 0.12);
+  color: #c2410c;
+  border: 1px solid rgba(234, 88, 12, 0.28);
+}
+
+.cs-canton-badge-tag--Rumiñahui,
+.cs-canton-badge-tag--Ruminahui {
+  background: rgba(147, 51, 234, 0.12);
+  color: #7e22ce;
+  border: 1px solid rgba(147, 51, 234, 0.28);
+}
+
+body.modo-oscuro .cs-canton-badge-tag--Quito {
+  background: rgba(37, 99, 235, 0.25);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+body.modo-oscuro .cs-canton-badge-tag--Cayambe {
+  background: rgba(5, 150, 105, 0.25);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+body.modo-oscuro .cs-canton-badge-tag--Mejía,
+body.modo-oscuro .cs-canton-badge-tag--Mejia {
+  background: rgba(234, 88, 12, 0.25);
+  color: #fdba74;
+  border-color: rgba(249, 115, 22, 0.45);
+}
+
+body.modo-oscuro .cs-canton-badge-tag--Rumiñahui,
+body.modo-oscuro .cs-canton-badge-tag--Ruminahui {
+  background: rgba(147, 51, 234, 0.25);
+  color: #d8b4fe;
+  border-color: rgba(168, 85, 247, 0.45);
+}
+
+/* Badges Semánticos */
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-full);
+  font-size: 0.63rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cs-badge--ok {
+  background-color: var(--cs-green-light);
+  color: var(--cs-green);
+  border: 1px solid var(--cs-green-border);
+}
+
+.cs-badge--warning {
+  background-color: var(--cs-amber-light);
+  color: var(--cs-amber);
+  border: 1px solid var(--cs-amber-border);
+}
+
+.cs-badge--danger {
+  background-color: var(--cs-coral-light);
+  color: var(--cs-coral);
+  border: 1px solid var(--cs-coral-border);
+}
+
+/* Empty State Elegante */
+.cs-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-muted);
+  gap: 0.5rem;
+}
+
+.cs-empty-state__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.cs-empty-state p {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Marcadores de Encuesta de Alta Visibilidad (Sobresalen en cualquier zoom)
+   ========================================================================== */
+.cs-point-wrapper {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+.cs-point-pin {
+  display: block;
+  width: 14px;
+  height: 14px;
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.cs-point-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--point-color, #f26419);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1.5px rgba(15, 23, 42, 0.4), 0 2px 6px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-point-core {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  pointer-events: none;
+}
+
+.cs-point-pin:hover .cs-point-dot {
+  box-shadow: 0 0 0 3px rgba(242, 100, 25, 0.8), 0 3px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+/* Micro-Etiqueta (Tipología / Sector) anclada absolutamente */
+.cs-point-badge {
+  display: none;
+  position: absolute;
+  left: 17px;
+  top: -2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 800;
+  line-height: 1;
+  color: #0f172a;
+  background: #ffffff;
+  padding: 2px 4.5px;
+  border-radius: 4px;
+  border: 1.5px solid var(--point-color, #0f172a);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  pointer-events: none !important;
+  z-index: 1002;
+}
+
+/* Mostrar la etiqueta ÚNICAMENTE cuando el botón 'Activadas' está activo */
+.cs-mostrar-etiquetas .cs-point-badge {
+  display: block !important;
+}
+
+/* Modo Oscuro para Marcadores y Micro-Etiquetas */
+body.modo-oscuro .cs-point-dot {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+body.modo-oscuro .cs-point-badge {
+  color: #f8fafc;
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   Drawer (Detalle Encuestador)
+   ========================================================================== */
+.cs-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 7, 18, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--cs-transition), visibility var(--cs-transition);
+}
+
+.cs-drawer-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cs-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--bg-surface);
+  z-index: 201;
+  box-shadow: var(--shadow-lg);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-drawer.open {
+  transform: translateX(0);
+}
+
+.cs-drawer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, var(--cs-purple-dark) 0%, var(--cs-purple-primary) 100%);
+  color: #ffffff;
+}
+
+.cs-drawer__title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cs-drawer__body {
+  padding: 0.9rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.cs-mini-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.cs-mini-card textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.4rem;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  font-size: 0.74rem;
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+  resize: vertical;
+  font-family: inherit;
+}
+
+.cs-mini-card textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  background-color: #ffffff;
+}
+
+/* ==========================================================================
+   Toast Notification & Loading
+   ========================================================================== */
+.cs-toast {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--cs-purple-primary);
+  color: #ffffff;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  z-index: 300;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cs-toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.cs-loading {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 7, 18, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  color: #ffffff;
+}
+
+.cs-loading__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--cs-gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.anim-girar {
+  animation: spin 0.8s linear infinite !important;
+}
+
+.cs-footer {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints & Mobile Optimization (iPhone / Teléfonos)
+   ========================================================================== */
+/* ==========================================================================
+   OPTIMIZACIONES MÓVILES (CELULARES GAMA BAJA / FIELD FIRST)
+   ========================================================================== */
+
+/* Contención de renderizado para 60 FPS en tablas largas */
+.cs-enc-row {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 54px;
+}
+
+button, select, input, a, .cs-toggle-btn, .cs-date-pill {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ocultar barra de pestañas obsoleta — el dashboard es 100% navegable y deslizable verticalmente */
+.cs-mobile-nav {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints: Desktop / Tablet / Teléfono
+   ========================================================================== */
+
+/* TABLETS Y PANTALLAS MEDIANAS (≤ 1024px) */
+@media (max-width: 1024px) {
+  html, body {
+    height: auto !important;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cs-container {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0.5rem 0.65rem 2.5rem !important;
+  }
+
+  .cs-main-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 0.75rem;
+  }
+
+  .cs-map-section {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Altura explícita garantizada en tablet para que MapLibre nunca quede en blanco */
+  .cs-map-wrapper {
+    height: 520px !important;
+    min-height: 480px !important;
+    position: relative !important;
+    width: 100% !important;
+    touch-action: none !important;
+  }
+
+  #map {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    touch-action: none !important;
+  }
+
+  .cs-right-panel {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem;
+  }
+
+  .cs-table-card {
+    height: auto !important;
+    min-height: 360px;
+  }
+
+  .cs-table-scroll-container {
+    max-height: 460px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Filtros en 2 columnas en pantallas medianas */
+  .cs-ribbon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.55rem;
+  }
+
+  .cs-ribbon-field--date {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* SMARTPHONES Y TABLETS VERTICALES (≤ 768px) */
+@media (max-width: 768px) {
+  :root {
+    --cs-header-content-h: auto;
+  }
+
+  .cs-header {
+    height: auto !important;
+    min-height: 48px;
+    padding-top: max(4px, var(--sat));
+    padding-bottom: 4px;
+  }
+
+  .cs-header__inner {
+    padding: 0 0.5rem;
+    gap: 0.4rem;
+    height: auto;
+    min-height: 42px;
+  }
+
+  .cs-brand__logo-box {
+    height: 26px;
+    padding: 2px 4px;
+  }
+
+  .cs-brand__logo {
+    height: 22px;
+    max-width: 85px;
+  }
+
+  /* Título universal en 2 líneas sin recortar prematuramente */
+  .cs-header__title-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .cs-header__title {
+    font-size: 0.82rem;
+    line-height: 1.25;
+    font-weight: 800;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .cs-header__live-badge {
+    font-size: 0.58rem;
+    padding: 1px 5px;
+  }
+
+  .cs-header__clock {
+    display: none;
+  }
+
+  .cs-btn-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .cs-btn-icon svg.cs-icon {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  /* KPIs: Compactos en grid 2×2 para iPhone */
+  .cs-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.4rem;
+  }
+
+  .cs-kpi-card {
+    padding: 0.45rem 0.65rem 0.55rem;
+    min-height: 60px;
+    gap: 0.25rem;
+  }
+
+  .cs-kpi-card__value {
+    font-size: 1.3rem;
+  }
+
+  .cs-kpi-icon-wrap {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cs-kpi-badge {
+    font-size: 0.65rem;
+  }
+
+  .cs-kpi-sub {
+    font-size: 0.62rem;
+  }
+
+  /* Filtros de Campo: 2 columnas limpias y holgadas, Fecha ocupa todo el ancho */
+  .cs-ribbon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem 0.65rem !important;
+    width: 100% !important;
+  }
+
+  .cs-ribbon-field {
+    min-width: 0;
+  }
+
+  .cs-field-label {
+    font-size: 0.68rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cs-ribbon-field--date {
+    grid-column: 1 / -1 !important;
+  }
+
+  .cs-date-filter-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    width: 100%;
+  }
+
+  .cs-date-pills {
+    flex-wrap: wrap;
+  }
+
+  .cs-select-wrap--date {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  /* Mapa en móvil: Altura cómoda, totalmente interactivo y navegable */
+  .cs-map-wrapper {
+    height: 440px !important;
+    min-height: 380px !important;
+    position: relative !important;
+    touch-action: none !important;
+  }
+
+  #map {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    touch-action: none !important;
+  }
+}
+
+/* SMARTPHONES PEQUEÑOS (≤ 480px) */
+@media (max-width: 480px) {
+  .cs-container {
+    padding: 0.35rem 0.4rem 2rem !important;
+  }
+
+  .cs-ribbon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.45rem 0.55rem !important;
+  }
+
+  .cs-ribbon-field--date {
+    grid-column: 1 / -1 !important;
+  }
+
+  .cs-date-pill {
+    padding: 0.22rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .cs-select {
+    min-height: 38px;
+    font-size: 0.76rem;
+    padding: 0.35rem 1.6rem 0.35rem 0.55rem;
+  }
+
+  .cs-map-wrapper {
+    height: 420px !important;
+    min-height: 380px !important;
+    touch-action: none !important;
+  }
+
+  .cs-sector-active-bar {
+    width: 94%;
+    max-width: calc(100% - 20px);
+    padding: 0.3rem 0.5rem;
+    font-size: 0.72rem;
+  }
+
+  .cs-btn-gmaps {
+    min-height: 30px;
+    padding: 0.2rem 0.45rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* ==========================================================================
+   Panel Discreto: Pirámide Poblacional (Sexo y Grupo de Edad)
+   ========================================================================== */
+.cs-piramide-box {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  user-select: none;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.cs-piramide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-subtle, rgba(0, 0, 0, 0.02));
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s ease;
+}
+
+.cs-piramide-header:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .cs-piramide-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cs-piramide-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.74rem;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.cs-piramide-subtext {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.cs-piramide-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.cs-piramide-tag {
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cs-piramide-tag--hombres {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+body.dark-mode .cs-piramide-tag--hombres {
+  background: rgba(2, 132, 199, 0.25);
+  color: #38bdf8;
+}
+
+.cs-piramide-tag--mujeres {
+  background: #ffe4e6;
+  color: #e11d48;
+}
+
+body.dark-mode .cs-piramide-tag--mujeres {
+  background: rgba(225, 29, 72, 0.25);
+  color: #fb7185;
+}
+
+.cs-piramide-arrow {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+}
+
+.cs-piramide-box.collapsed .cs-piramide-arrow {
+  transform: rotate(-90deg);
+}
+
+.cs-piramide-body {
+  padding: 0.45rem 0.75rem 0.55rem;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+  max-height: 240px;
+  opacity: 1;
+}
+
+.cs-piramide-box.collapsed .cs-piramide-body {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cs-piramide-container {
+  max-width: 580px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cs-piramide-legend {
+  display: grid;
+  grid-template-columns: 88px 1fr 54px 1fr 88px;
+  align-items: center;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px dashed var(--border-subtle);
+  gap: 0.4rem;
+}
+
+.cs-legend-space {
+  display: block;
+}
+
+.cs-legend-side--hombres {
+  text-align: right;
+  padding-right: 0.4rem;
+  color: #0284c7;
+  white-space: nowrap;
+}
+
+body.dark-mode .cs-legend-side--hombres {
+  color: #38bdf8;
+}
+
+.cs-legend-side--mujeres {
+  text-align: left;
+  padding-left: 0.4rem;
+  color: #e11d48;
+  white-space: nowrap;
+}
+
+body.dark-mode .cs-legend-side--mujeres {
+  color: #fb7185;
+}
+
+.cs-legend-center {
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+}
+
+.cs-piramide-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cs-piramide-row {
+  display: grid;
+  grid-template-columns: 88px 1fr 54px 1fr 88px;
+  align-items: center;
+  height: 21px;
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+  gap: 0.4rem;
+}
+
+.cs-piramide-side {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 4px;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+body.dark-mode .cs-piramide-side {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cs-piramide-side--left {
+  justify-content: flex-end;
+}
+
+.cs-piramide-side--right {
+  justify-content: flex-start;
+}
+
+.cs-piramide-bar {
+  height: 100%;
+  border-radius: 3px;
+  min-width: 2px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cs-piramide-bar--hombres {
+  background: linear-gradient(90deg, #38bdf8, #0284c7);
+}
+
+body.dark-mode .cs-piramide-bar--hombres {
+  background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+
+.cs-piramide-bar--mujeres {
+  background: linear-gradient(90deg, #f43f5e, #e11d48);
+}
+
+body.dark-mode .cs-piramide-bar--mujeres {
+  background: linear-gradient(90deg, #fb7185, #e11d48);
+}
+
+.cs-piramide-val {
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cs-piramide-val--hombres {
+  text-align: right;
+  color: #0284c7;
+}
+
+body.dark-mode .cs-piramide-val--hombres {
+  color: #38bdf8;
+}
+
+.cs-piramide-val--mujeres {
+  text-align: left;
+  color: #e11d48;
+}
+
+body.dark-mode .cs-piramide-val--mujeres {
+  color: #fb7185;
+}
+
+.cs-piramide-pct {
+  font-size: 0.66rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.cs-piramide-center-label {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-subtle, rgba(0, 0, 0, 0.04));
+  border-radius: 4px;
+  padding: 0.12rem 0;
+  border: 1px solid var(--border-subtle);
+  line-height: 1.1;
+}
+
+.cs-piramide-footer-note {
+  text-align: center;
+  margin-top: 0.35rem;
+  font-size: 0.61rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Optimizaciones Responsivas Pirámide (iPhone / Smartphones / Tablets)
+   ========================================================================== */
+@media (max-width: 540px) {
+  .cs-piramide-header {
+    padding: 0.35rem 0.55rem;
+    gap: 0.4rem;
+  }
+
+  .cs-piramide-subtext {
+    display: none; /* En pantallas estrechas, oculta el texto secundario para no apretar los tags */
+  }
+
+  .cs-piramide-title {
+    font-size: 0.70rem;
+  }
+
+  .cs-piramide-tag {
+    font-size: 0.67rem;
+    padding: 0.12rem 0.38rem;
+  }
+
+  .cs-piramide-body {
+    padding: 0.35rem 0.4rem 0.45rem;
+  }
+
+  .cs-piramide-legend {
+    grid-template-columns: 66px 1fr 46px 1fr 66px;
+    gap: 0.22rem;
+    font-size: 0.60rem;
+  }
+
+  .cs-piramide-row {
+    grid-template-columns: 66px 1fr 46px 1fr 66px;
+    gap: 0.22rem;
+    height: 20px;
+  }
+
+  .cs-piramide-val {
+    font-size: 0.70rem;
+  }
+
+  .cs-piramide-pct {
+    font-size: 0.58rem;
+  }
+
+  .cs-piramide-center-label {
+    font-size: 0.62rem;
+    padding: 0.08rem 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .cs-piramide-header {
+    padding: 0.3rem 0.4rem;
+  }
+
+  .cs-piramide-title {
+    font-size: 0.66rem;
+  }
+
+  .cs-piramide-tag {
+    font-size: 0.62rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .cs-piramide-legend {
+    grid-template-columns: 56px 1fr 42px 1fr 56px;
+    gap: 0.15rem;
+    font-size: 0.54rem;
+  }
+
+  .cs-piramide-row {
+    grid-template-columns: 56px 1fr 42px 1fr 56px;
+    gap: 0.15rem;
+    height: 19px;
+  }
+
+  .cs-piramide-val {
+    font-size: 0.66rem;
+  }
+
+  .cs-piramide-pct {
+    display: none; /* En iPhone pequeños (320-375px) muestra el conteo limpio sin apretujar */
+  }
+
+  .cs-piramide-center-label {
+    font-size: 0.58rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================================
+   BARRA FLOTANTE DE CONTROL DE CAPAS DEL MAPA (PRENDER / APAGAR)
+   ========================================================================= */
+/* Contenedor Superior Unificado de Controles del Mapa (Zero-Overlap) */
+.cs-map-top-overlay {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+
+.cs-map-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.cs-canton-legend-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  pointer-events: auto;
+  min-width: 0;
+}
+
+.cs-canton-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.26rem 0.6rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: var(--text-muted, #475569);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-canton-pill:hover {
+  background: #ffffff;
+  color: var(--text-main, #0f172a);
+  transform: translateY(-1px);
+}
+
+.cs-canton-pill.is-active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
+}
+
+.cs-canton-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+body.modo-oscuro .cs-canton-pill {
+  background: rgba(30, 41, 59, 0.92);
+  border-color: rgba(51, 65, 85, 0.9);
+  color: #cbd5e1;
+}
+
+body.modo-oscuro .cs-canton-pill.is-active {
+  background: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+}
+
+/* Barra secundaria de Circunscripciones en el Mapa (Quito y Rumiñahui) */
+.cs-circ-legend-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  pointer-events: auto;
+  transition: all 0.25s ease-out;
+  min-width: 0;
+}
+
+.cs-circ-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.52rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  color: var(--text-muted, #475569);
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-circ-pill:hover {
+  background: #ffffff;
+  color: var(--text-main, #0f172a);
+  transform: translateY(-1px);
+}
+
+.cs-circ-pill.is-active {
+  background: #1e293b;
+  color: #ffffff;
+  border-color: #1e293b;
+  box-shadow: 0 2px 6px rgba(30, 41, 59, 0.25);
+}
+
+body.modo-oscuro .cs-circ-pill {
+  background: rgba(30, 41, 59, 0.92);
+  border-color: rgba(71, 85, 105, 0.85);
+  color: #cbd5e1;
+}
+
+body.modo-oscuro .cs-circ-pill.is-active {
+  background: #0ea5e9;
+  color: #ffffff;
+  border-color: #0ea5e9;
+}
+
+#wrapCircunscripcionFilter.is-hidden {
+  display: none !important;
+}
+
+.cs-map-layer-toggles {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  pointer-events: auto;
+  flex-shrink: 0;
+}
+
+.cs-layer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: var(--text-muted, #64748b);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cs-layer-pill:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: var(--text-main, #0f172a);
+  transform: translateY(-1px);
+}
+
+.cs-layer-pill.active {
+  background: #ffffff;
+  border-color: #0284c7;
+  color: #0369a1;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.18);
+}
+
+.cs-layer-pill:not(.active) {
+  opacity: 0.55;
+  background: rgba(241, 245, 249, 0.85);
+  border-color: #e2e8f0;
+  color: #94a3b8;
+}
+
+.cs-layer-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.cs-layer-pill__dot--muestreo {
+  background: #0d9488;
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.25);
+}
+
+.cs-layer-pill__dot--llegada {
+  background: #d97706;
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
+}
+
+.cs-layer-pill__dot--sectores {
+  background: #028090;
+  box-shadow: 0 0 0 2px rgba(2, 128, 144, 0.2);
+}
+
+.cs-layer-pill__dot--canton {
+  background: linear-gradient(135deg, #2563eb 50%, #059669 50%);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+}
+
+.cs-layer-pill__dot--circ {
+  background: linear-gradient(135deg, #2563eb 50%, #9333ea 50%);
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.25);
+}
+
+.cs-layer-pill__dot--alerta {
+  background: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.25);
+}
+
+body.modo-oscuro .cs-layer-pill {
+  background: rgba(30, 41, 59, 0.92);
+  border-color: rgba(51, 65, 85, 0.9);
+  color: #94a3b8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.modo-oscuro .cs-layer-pill.active {
+  background: #1e293b;
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+body.modo-oscuro .cs-layer-pill:not(.active) {
+  background: rgba(15, 23, 42, 0.7);
+  color: #64748b;
+}
+
+.cs-layer-pill--pendientes.active {
+  background: #fffbeb !important;
+  border-color: #f59e0b !important;
+  color: #b45309 !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.28) !important;
+}
+
+body.modo-oscuro .cs-layer-pill--pendientes.active {
+  background: rgba(180, 83, 9, 0.25) !important;
+  border-color: #f59e0b !important;
+  color: #fde68a !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2) !important;
+}
+
+/* =========================================================================
+   POPUPS INTERACTIVOS DE PUNTOS DE MUESTREO Y LLEGADA
+   ========================================================================= */
+.maplibregl-popup-content {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+.maplibregl-popup-close-button {
+  top: 8px !important;
+  right: 8px !important;
+  font-size: 16px !important;
+  color: #64748b !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+}
+
+.maplibregl-popup-close-button:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #0f172a !important;
+}
+
+.cs-map-popup {
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 260px;
+  font-family: inherit;
+}
+
+.cs-popup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.cs-popup-badge--muestreo {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.cs-popup-badge--llegada {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.cs-popup-title {
+  margin: 0.15rem 0 0.2rem 0;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+.cs-popup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  color: #64748b;
+  gap: 0.5rem;
+}
+
+.cs-popup-row strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.cs-popup-btn-gmaps {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #ffffff !important;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.cs-popup-btn-gmaps:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #0369a1, #075985);
+}
+
+@media (max-width: 640px) {
+  .cs-map-top-overlay {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    gap: 0.25rem;
+  }
+
+  .cs-map-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  /* Fila 1: Cantones con scroll táctil horizontal de 1 sola línea */
+  .cs-canton-legend-bar {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.25rem;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cs-canton-legend-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cs-canton-pill {
+    padding: 0.2rem 0.48rem;
+    font-size: 0.65rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Fila 2: Capas de mapa limpias, compactas y horizontales */
+  .cs-map-layer-toggles {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cs-map-layer-toggles::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cs-layer-pill {
+    padding: 0.18rem 0.45rem;
+    font-size: 0.64rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #ffffff !important;
+  }
+
+  /* Fila 3: Circunscripciones en scroll táctil horizontal */
+  .cs-circ-legend-bar {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.22rem;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cs-circ-legend-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cs-circ-pill {
+    padding: 0.16rem 0.42rem;
+    font-size: 0.61rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Barra de sector censal activo en móvil: ubicada abajo ergonómicamente */
+  .cs-sector-active-bar {
+    top: auto;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    max-width: 380px;
+    z-index: 500;
+  }
+}
+
+/* =========================================================================
+   OPTIMIZACIÓN DE GPU Y MEMORIA PARA TELÉFONOS DE 1-2GB RAM (Galaxy A01 Core)
+   Elimina recalculo de sombras pesadas y desenfoques gaussianos en WebGL
+   ========================================================================= */
+#map, .maplibregl-canvas {
+  touch-action: none !important;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+@media (max-width: 768px) {
+  /* Sustituir backdrop-filter por fondos planos opacos para liberar la GPU PowerVR */
+  .cs-ribbon-bar,
+  .cs-mobile-nav,
+  .cs-panel-header,
+  .cs-toast,
+  .cs-map-layer-toggles {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .cs-mobile-nav {
+    background: #0f172a !important;
+  }
+  /* Optimización de sombras para evitar caídas de FPS */
+  .cs-card, .cs-metric-card, .cs-table-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  }
+}
+
+/* =========================================================================
+   SISTEMA DE ALERTAS Y AUDITORÍA ESPACIAL EN TIEMPO REAL
+   ========================================================================= */
+.cs-btn-alert-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--cs-transition);
+  animation: cs-alert-pulse 2s infinite ease-in-out;
+}
+
+.cs-btn-alert-filter:hover,
+.cs-btn-alert-filter.active {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #b91c1c;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+@keyframes cs-alert-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.cs-alert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 5px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  margin-left: 4px;
+}
+
+body.modo-oscuro .cs-btn-alert-filter {
+  background: #450a0a;
+  color: #fca5a5;
+  border-color: #7f1d1d;
+}
+
+body.modo-oscuro .cs-btn-alert-filter:hover,
+body.modo-oscuro .cs-btn-alert-filter.active {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+body.modo-oscuro .cs-alert-badge {
+  background: #450a0a;
+  color: #fca5a5;
+  border-color: #7f1d1d;
+}
+
+/* ===== MARCADOR GPS DE UBICACIÓN: MUÑEQUITO SUPERVISOR ===== */
+.cs-gps-pegman-wrap {
+  position: relative;
+  width: 38px;
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cs-gps-pegman-wrap:hover {
+  transform: scale(1.18) translateY(-4px);
+}
+
+.cs-gps-pegman-svg {
+  display: block;
+  width: 38px;
+  height: 50px;
+  position: relative;
+  z-index: 2;
+  transform-origin: bottom center;
+  animation: cs-pegman-breathe 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes cs-pegman-breathe {
+  0% { transform: translateY(0) scaleY(1); }
+  100% { transform: translateY(-1.5px) scaleY(1.02); }
+}
+
+/* Animación sutil de saludo en el brazo derecho */
+.cs-pegman-arm-waving {
+  transform-origin: 25px 16px;
+  animation: cs-pegman-wave 2.2s ease-in-out infinite;
+}
+
+@keyframes cs-pegman-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-6deg); }
+}
+
+/* Radar / Halo concéntrico en el suelo */
+.cs-gps-pegman-radar {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(79, 126, 144, 0.5) 0%, rgba(79, 126, 144, 0) 70%);
+  border: 2px solid rgba(79, 126, 144, 0.85);
+  box-shadow: 0 0 10px rgba(79, 126, 144, 0.45);
+  animation: cs-gps-ripple 2s infinite ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes cs-gps-ripple {
+  0% {
+    transform: translateX(-50%) scale(0.5);
+    opacity: 1;
+    border-width: 2.5px;
+  }
+  100% {
+    transform: translateX(-50%) scale(2.8);
+    opacity: 0;
+    border-width: 0.5px;
+  }
+}
+
+/* ==========================================================================
+   ESTADO STANDBY / SISTEMA EN ESPERA (CLIMA SOCIAL)
+   ========================================================================== */
+.cs-standby {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(circle at 50% 30%, #1e112a 0%, #0d0614 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #f8fafc;
+}
+
+.cs-standby__card {
+  max-width: 520px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 36px 30px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(64, 0, 84, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: cs-fade-in 0.4s ease-out;
+}
+
+.cs-standby__logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 10px 24px;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  margin-bottom: 24px;
+}
+
+.cs-standby__logo {
+  height: 42px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
+  display: block;
+}
+
+.cs-standby__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.cs-standby__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: cs-pulse 2s infinite;
+}
+
+.cs-standby__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.02em;
+}
+
+.cs-standby__desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 22px 0;
+}
+
+.cs-standby__note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  text-align: left;
+  margin-bottom: 26px;
+}
+
+.cs-standby__note svg {
+  width: 18px;
+  height: 18px;
+  color: #f59e0b;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cs-standby__footer {
+  font-size: 0.78rem;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+}
+
+/* =========================================================================
+   BARRA FLOTANTE MODO INSPECCIÓN (BYPASS DE STANDBY)
+   ========================================================================= */
+.cs-inspect-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 9999;
+  border-bottom: 2px solid #028090;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  font-family: 'Poppins', sans-serif;
+  animation: cs-fade-in 0.25s ease-out;
+}
+
+.cs-inspect-bar__info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-inspect-bar__pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #028090;
+  box-shadow: 0 0 0 0 rgba(2, 128, 144, 0.7);
+  animation: cs-pulse 1.8s infinite;
+}
+
+.cs-inspect-bar__title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cs-inspect-bar__sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .cs-inspect-bar__sub {
+    display: none;
+  }
+}
+
+.cs-inspect-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cs-inspect-bar__btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cs-inspect-bar__btn:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+.cs-standby__logo-wrap {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.cs-standby__logo-wrap:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+}
+
+.cs-standby__logo-wrap:active {
+  transform: scale(0.96);
+}

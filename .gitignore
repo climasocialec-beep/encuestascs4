@@ -1,0 +1,9 @@
+node_modules/
+.env
+!public/assets/*.png
+*.log
+test_*.png
+.DS_Store
+Thumbs.db
+*.xlsx
+*.docx
