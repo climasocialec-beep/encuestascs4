@@ -1867,35 +1867,39 @@ document.addEventListener('DOMContentLoaded', () => {
             const normStr = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().trim();
             
             let parList = [];
-            const cantActivo = AppState.cantonSeleccionado;
-            const permitidasCanton = (cantActivo !== 'Todos' && PARROQUIAS_POR_CANTON[cantActivo]) ? PARROQUIAS_POR_CANTON[cantActivo].map(normStr) : null;
+            const cantActivo = AppState.cantonSeleccionado || 'Todos';
 
             if (AppState.parroquiasGeojson && AppState.parroquiasGeojson.features && AppState.parroquiasGeojson.features.length > 0) {
                 AppState.parroquiasGeojson.features.forEach(f => {
-                    const p = (f.properties.nombre || f.properties.PARROQUIA || f.properties.name || '').toUpperCase().trim();
+                    const p = (f.properties.nombre || f.properties.PARROQUIA || f.properties.parroquia || f.properties.name || '').toUpperCase().trim();
                     const c = (f.properties.canton || f.properties.CANTON || '').trim();
                     
-                    // Si hay cantón seleccionado, filtrar estrictamente para que solo queden las correspondientes a ese cantón
-                    if (permitidasCanton) {
+                    if (cantActivo !== 'Todos') {
                         const targetCan = normStr(cantActivo);
                         const normC = normStr(c);
                         if (normC && normC !== targetCan && !normC.includes(targetCan) && !targetCan.includes(normC)) return;
-                        const normP = normStr(p);
-                        const coincideParroquia = permitidasCanton.includes(normP);
-                        if (!coincideParroquia) return;
+                    }
+                    if (p && !parList.includes(p)) parList.push(p);
+                });
+            }
+
+            if (parList.length === 0 && AppState.sectoresGeojson && AppState.sectoresGeojson.features) {
+                AppState.sectoresGeojson.features.forEach(f => {
+                    const p = (f.properties.parroquia || f.properties.PARROQUIA || '').toUpperCase().trim();
+                    const c = (f.properties.canton || f.properties.CANTON || '').trim();
+                    if (cantActivo !== 'Todos') {
+                        const targetCan = normStr(cantActivo);
+                        const normC = normStr(c);
+                        if (normC && normC !== targetCan && !normC.includes(targetCan) && !targetCan.includes(normC)) return;
                     }
                     if (p && !parList.includes(p)) parList.push(p);
                 });
             }
 
             if (parList.length === 0) {
-                if (permitidasCanton) {
-                    permitidasCanton.forEach(p => { if (!parList.includes(p)) parList.push(p); });
-                } else {
-                    Object.values(PARROQUIAS_POR_CANTON).forEach(pars => {
-                        pars.forEach(p => { const up = p.toUpperCase().trim(); if (!parList.includes(up)) parList.push(up); });
-                    });
-                }
+                Object.values(PARROQUIAS_POR_CANTON).forEach(pars => {
+                    pars.forEach(p => { const up = p.toUpperCase().trim(); if (!parList.includes(up)) parList.push(up); });
+                });
             }
 
             parList.sort((a, b) => a.localeCompare(b, 'es'));
@@ -2485,8 +2489,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'parroquias-label',
                         type: 'symbol',
                         source: 'parroquias-centroides-source',
-                        minzoom: 8.8,
-                        maxzoom: 15.0,
+                        minzoom: 7.0,
+                        maxzoom: 16.0,
                         layout: {
                             'text-field': ['coalesce', ['get', 'nombre'], ['get', 'parroquia'], ['get', 'PARROQUIA'], ''],
                             'text-font': ['Open Sans Bold'],
@@ -2511,7 +2515,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-fill',
                         type: 'fill',
                         source: 'sectores-source',
-                        filter: ['==', ['geometry-type'], 'Polygon'],
+                        filter: ['in', ['geometry-type'], ['literal', ['Polygon', 'MultiPolygon']]],
                         paint: {
                             'fill-color': EXPR_SECTORES_FILL,
                             'fill-opacity': 0.20
@@ -2521,7 +2525,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: 'sectores-line',
                         type: 'line',
                         source: 'sectores-source',
-                        filter: ['==', ['geometry-type'], 'Polygon'],
+                        filter: ['in', ['geometry-type'], ['literal', ['Polygon', 'MultiPolygon']]],
                         paint: {
                             'line-color': EXPR_SECTORES_LINE,
                             'line-width': [
