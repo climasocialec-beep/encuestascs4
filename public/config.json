@@ -1,11 +1,11 @@
 {
-  "estado": "ACTIVO",
+  "estado": "STANDBY",
   "version": "1.0.0",
-  "proyecto": "Movilidad Movidelnor - Pichincha 2026",
-  "canton": "Pedro Moncayo",
+  "proyecto": "Terminal de Supervisión en Espera",
+  "canton": "",
   "provincia": "Pichincha",
   "modalidad": "sectores",
-  "meta": 170,
+  "meta": 0,
   "bounds": [
     [
       -78.41,
