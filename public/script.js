@@ -278,7 +278,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'CUENCA': { nombre: 'Cuenca', hex: '#b91c1c', badge: '⛲' },
         'LOJA': { nombre: 'Loja', hex: '#2563eb', badge: '🎵' },
         'AMBATO': { nombre: 'Ambato', hex: '#4d7c0f', badge: '🍎' },
-        'RIOBAMBA': { nombre: 'Riobamba', hex: '#334155', badge: '🚂' }
+        'RIOBAMBA': { nombre: 'Riobamba', hex: '#334155', badge: '🚂' },
+
+        // === ZAMORA CHINCHIPE ===
+        'EL PANGUI': { nombre: 'El Pangui', hex: '#059669', badge: '🌳' },
+        'PANGUI': { nombre: 'El Pangui', hex: '#059669', badge: '🌳' }
     };
 
     const COLORES_CANTON = {};
@@ -2987,8 +2991,10 @@ document.addEventListener('DOMContentLoaded', () => {
         map.on('mouseleave', 'puntos-layer', () => { map.getCanvas().style.cursor = ''; });
         map.on('mouseenter', 'sectores-fill', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'sectores-fill', () => { map.getCanvas().style.cursor = ''; });
+        map.on('mouseenter', 'sectores-point', () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'sectores-point', () => { map.getCanvas().style.cursor = ''; });
 
-        // Clic en Sector Censal
+        // Clic en Sector Censal / Punto Referencial
         const abrirPopupSector = (e) => {
             if (!e.features || !e.features.length) return;
             const p = e.features[0].properties || {};
@@ -3011,11 +3017,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         map.on('click', 'sectores-fill', abrirPopupSector);
+        map.on('click', 'sectores-point', abrirPopupSector);
 
         // Conectar botones para Prender / Apagar capas en el mapa
         const togglesMap = [
             { btn: UI.toggleParroquias, key: 'parroquias', layers: ['parroquias-fill', 'parroquias-line', 'parroquias-label'] },
-            { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-fill', 'sectores-line', 'sectores-label'] }
+            { btn: UI.toggleSectores, key: 'sectores', layers: ['sectores-fill', 'sectores-line', 'sectores-point', 'sectores-label'] }
         ];
 
         togglesMap.forEach(({ btn, key, layers }) => {
