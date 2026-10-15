@@ -1,6 +1,6 @@
 {
   "estado": "ACTIVO",
-  "version": "108.0.0",
+  "version": "110.0.0",
   "proyecto": "Encuesta Cantonal El Pangui 2026",
   "canton": "El Pangui",
   "provincia": "Zamora Chinchipe",
@@ -17,7 +17,8 @@
     ]
   ],
   "kobo": {
-    "asset_id": "ag7L7pRAqLCwckTTgAYiTT",
+    "asset_id": "aS8PGTBKCYgKzFV3FVJKGF",
+    "api_token": "07cf361cc0dcfc56f489d599435c8e0ed6ce9387",
     "campo_encuestador": "codencu",
     "campo_supervisor": "codsup",
     "choices_parroquias": {

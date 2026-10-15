@@ -70,17 +70,15 @@ function obtenerParametrosActivos() {
             ? koboTokenFromConfig
             : limpiarVar(process.env.API_TOKEN || process.env.KOBO_API_TOKEN || process.env.KOBO_TOKEN || ""));
 
-    const campoEnc = limpiarVar(
-        process.env.CAMPO_ENCUESTADOR ||
-        (config.kobo && config.kobo.campo_encuestador) ||
-        "codenc"
-    );
+    const koboEncFromConfig = config.kobo && typeof config.kobo.campo_encuestador === "string" ? config.kobo.campo_encuestador.trim() : null;
+    const campoEnc = (koboEncFromConfig !== null && koboEncFromConfig !== "")
+        ? koboEncFromConfig
+        : limpiarVar(process.env.CAMPO_ENCUESTADOR || "codenc");
 
-    const campoSup = limpiarVar(
-        process.env.CAMPO_SUPERVISOR ||
-        (config.kobo && config.kobo.campo_supervisor) ||
-        "codsup"
-    );
+    const koboSupFromConfig = config.kobo && typeof config.kobo.campo_supervisor === "string" ? config.kobo.campo_supervisor.trim() : null;
+    const campoSup = (koboSupFromConfig !== null && koboSupFromConfig !== "")
+        ? koboSupFromConfig
+        : limpiarVar(process.env.CAMPO_SUPERVISOR || "codsup");
 
     const choicesParroquias = (config.kobo && config.kobo.choices_parroquias) || {};
     const choicesCantones = (config.kobo && config.kobo.choices_cantones) || {};
@@ -241,7 +239,7 @@ function normalizarEncuesta(raw, params) {
     const noConsent = rawConsen === "2" || String(rawConsen).trim().toLowerCase() === "no" || String(rawConsen).trim().toLowerCase() === "rechaza";
     const consentimiento = noConsent ? "NO" : "SI";
 
-    const sc = extraerValor(raw, ["seccensal", "sc", "sectorcen", "p_ref", "codigo_sc", "sector_censal", "sector", "punto", "num_muestra"]);
+    const sc = extraerValor(raw, ["pr", "seccensal", "sc", "sectorcen", "p_ref", "codigo_sc", "sector_censal", "sector", "punto", "num_muestra"]);
     const rawTipol = String(extraerValor(raw, ["tipol", "tipologia", "TIPOLOGIA", "tipo_sc"]) || "").trim().toLowerCase();
     const tipologia = params.choicesTipologias[rawTipol] || rawTipol.toUpperCase();
     const barrio = extraerValor(raw, ["barrio", "barr", "BARRIO_O_SECTOR", "sector", "barrio_sector"]);
