@@ -1,7 +1,7 @@
 {
-  "estado": "ACTIVO",
-  "version": "110.0.9",
-  "proyecto": "Encuesta Cantonal El Pangui 2026",
+  "estado": "STANDBY",
+  "version": "110.0.10",
+  "proyecto": "Terminal de Supervisión en Espera",
   "canton": "El Pangui",
   "provincia": "Zamora Chinchipe",
   "modalidad": "puntos",
